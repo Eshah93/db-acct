@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import type { FC } from 'hono/jsx'
+import About from './About'
 
 const app = new Hono()
 
@@ -31,6 +32,18 @@ const Top: FC<{ messages: string[] }> = (props: { messages: string[] }) => {
 app.get('/page', (c) => {
   const messages = ['Good Morning', 'Good Evening', 'Good Night']
   return c.html(<Top messages={messages} />)
+})
+
+app.get('/', (c) => {
+  return c.html(
+    <Layout>
+      <h1>Hello</h1>
+    </Layout>
+  )
+})
+
+app.get('/about', (c) => {
+  return c.html(<About />)
 })
 
 export default app
